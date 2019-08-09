@@ -4,6 +4,10 @@ import { Form, Field, withFormik, Formik } from 'formik';
 import * as Yup from 'yup';
 import UserCard from './UserCard';
 
+
+
+
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -12,9 +16,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
 
 import './userForm.css';
-import {Link} from 'react-router-dom/cjs/react-router-dom.min';
 
 const useStyles = makeStyles({
   card: {
@@ -27,29 +31,16 @@ const useStyles = makeStyles({
   media: {
     height: 200
   }
+
 });
-const UserForm = ({ errors, touched, values, status }) => {
+const LoginForm= ({ errors, touched, values, status }) => {
   const [users, setUsers] = useState([]);
   const classes = useStyles();
-  useEffect(() => {
-    // status sometimes comes through as undefined
-    if (status) {
-      setUsers([...users, status]);
-
-    }
-  }, [status]);
-
-  useEffect(() => {
-    axios.get(`http://localhost:5000/api/restricted/data`).then(res => {
-      setUsers(res.data);
-    });
-  }, [status]);
-
-  return (
+ return (
     <>
       <div className="container2">
         <Card className={classes.card}>
-          <h2>New User Form</h2>
+          <h2>Login</h2>
           <Form
             className="formCon"
             render={formikProps => <UserCard {...formikProps} />}
@@ -63,25 +54,15 @@ const UserForm = ({ errors, touched, values, status }) => {
               <p className="error">{errors.password}</p>
             )}
 
-    <button className="button" type="submit">Create Account</button>
-    <Link to = "/login">
-    <Button className="button">Login here</Button>
-  </Link>
+    <Button className="button" type="submit">Login</Button>
+
           </Form>
         </Card>
       </div>
-
-      <div className="userCardCon">
-        {users.map(user => (
-          <UserCard key={user.id} props={user} />
-        ))}
-      </div>
-    </>
+   </>
   );
 };
-
-//===== Time to use a Higher Order Component
-const FormikUserForm = withFormik({
+const FormikLoginForm = withFormik({
   mapPropsToValues({ username, password }) {
     return {
       username: username || '',
@@ -107,6 +88,6 @@ const FormikUserForm = withFormik({
       .catch(err =>
       alert("User Name already taken"));
   }
-})(UserForm);
+})(LoginForm);
 
-export default FormikUserForm;
+export default FormikLoginForm;
