@@ -45,7 +45,7 @@ const UserForm = ({ errors, touched, values, status }) => {
   }, []);
 
   return (
-    <>
+    <div>
       <div className="container2">
         <Card className={classes.card}>
           <h2>New User Form</h2>
@@ -55,7 +55,7 @@ const UserForm = ({ errors, touched, values, status }) => {
           >
             <Field type="text" name="username" placeholder="username..." />
             {touched.username && errors.username && (
-              <p className="error">{errors.name}</p>
+              <p className="error">{errors.username}</p>
             )}
             <Field type="password" name="password" placeholder="password.." />
             {touched.password && errors.password && (
@@ -72,7 +72,7 @@ const UserForm = ({ errors, touched, values, status }) => {
           <UserCard key={user.id} props={user} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
