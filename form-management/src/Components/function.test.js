@@ -1,3 +1,4 @@
+
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import { render, fireEvent, act } from '@testing-library/react';
@@ -8,30 +9,15 @@ import {Card} from '@material-ui/core';
 import "@testing-library/react/cleanup-after-each";
 import {add} from './functionTest.js'
 
-// describe('add', () => {
-//   it('should return the sum of numbers', () => {
-//   expect(add(2, 2)).toBe(0);
-//
-//
-//   })
-//
-// })
-
-it('can render and login a user', () => {
-  act(() => {
-    let container = render(<FormikUserForm/>);
-   let buttonText =  container.getByText(/Create Account/i);
 
 
 
-  });
+
+describe('add', () => {
+  it('should return the sum of numbers', () => {
+  expect(add(2, 2)).toBe(4);
 
 
+  })
 
 })
-
-
-
-
-
-

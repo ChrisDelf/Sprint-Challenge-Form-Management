@@ -45,7 +45,7 @@ const UserForm = ({ errors, touched, values, status }) => {
   }, []);
 
   return (
-    <div>
+    <>
       <div className="container2">
         <Card className={classes.card}>
           <h2>New User Form</h2>
@@ -62,7 +62,7 @@ const UserForm = ({ errors, touched, values, status }) => {
               <p className="error">{errors.password}</p>
             )}
 
-            <button type="submit">Create Account</button>
+            <button className="button" type="submit">Create Account</button>
           </Form>
         </Card>
       </div>
@@ -72,7 +72,7 @@ const UserForm = ({ errors, touched, values, status }) => {
           <UserCard key={user.id} props={user} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
