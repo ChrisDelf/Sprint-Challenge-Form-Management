@@ -34,7 +34,7 @@ const UserForm = ({ errors, touched, values, status }) => {
     // status sometimes comes through as undefined
     if (status) {
       setUsers([...users, status]);
-      console.log('User', users);
+
     }
   }, [status]);
 
@@ -42,7 +42,7 @@ const UserForm = ({ errors, touched, values, status }) => {
     axios.get(`http://localhost:5000/api/restricted/data`).then(res => {
       setUsers(res.data);
     });
-  }, []);
+  }, [status]);
 
   return (
     <>
@@ -100,7 +100,8 @@ const FormikUserForm = withFormik({
         resetForm();
       })
 
-      .catch(err => console.log(err.response));
+      .catch(err =>
+      alert("User Name already taken"));
   }
 })(UserForm);
 
